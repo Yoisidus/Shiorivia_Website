@@ -29,7 +29,7 @@ print("Built dist/main, dist/community and dist/cn")
 # The China-region website is a static introduction to the overseas project.
 # It deliberately offers no login, user submissions, online AI interface,
 # server-side proxy, model credentials, or interactive AI service.
-cn_html = main_html
+cn_html = (ROOT / "index.html").read_text(encoding="utf-8")
 replacements = (
     ('<body data-site="main">', '<body data-site="cn">'),
     ('href="/community/"', 'href="https://shiorivia.org/"'),
@@ -52,10 +52,6 @@ cn_html = cn_html.replace(
     '  <link rel="icon" href="assets/shiorivia-favicon-32.png" type="image/png">',
     '  <link rel="icon" href="assets/shiorivia-favicon-32.png" type="image/png">\\n'
     '  <link rel="canonical" href="https://shiorivia.cn/">'.replace('\\n', '\n'),
-)
-cn_html = cn_html.replace(
-    '<p class="hero-description" data-i18n="hero_description">',
-    '<p class="hero-description" data-i18n="hero_description">',
 )
 cn_html = cn_html.replace(
     '<div class="hero-meta">',
