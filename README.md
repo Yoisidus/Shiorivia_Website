@@ -36,4 +36,6 @@ Official social profiles: [X](https://x.com/Shiorivia) · [YouTube](https://www.
 
 Official Star Road SVG, favicon and OG media are copied from the Shiorivia Local repository; their use follows [TRADEMARKS.md](TRADEMARKS.md) and [BRANDING.md](BRANDING.md), **separately from the code license**. Code is licensed under [AGPL-3.0](LICENSE); third-party character and fan content rights remain with their owners.
 
+Both websites are connected to separate Vercel Git projects, with `main` as the release branch. Preview and release changes should pass GitHub Actions checks before promotion.
+
 See [DEPLOYMENT.md](DEPLOYMENT.md) for release steps. Do not commit API keys, Cloudflare tokens or private user data.
