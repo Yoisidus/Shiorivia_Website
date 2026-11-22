@@ -20,3 +20,14 @@
 .social-link:focus-visible{outline:2px solid var(--gold-pale);outline-offset:4px;color:var(--gold-pale)}
 @media(max-width:800px){.footer-main{display:block}.footer-links{margin-top:30px;justify-content:flex-start}.social-links{margin-top:21px}}
 @media(max-width:560px){.social-links{gap:11px}.social-link{width:42px;height:42px}.social-link svg{width:19px;height:19px}}
+
+/* CN information-only edition: retain the Star Road visual language. */
+.cn-region-label,.cn-region-description,.cn-notice{display:none}
+body[data-site="cn"] .cn-region-label{display:inline-flex;align-items:center;gap:9px;margin-top:12px;color:var(--gold-pale);font-size:11px;letter-spacing:.12em}
+body[data-site="cn"] .cn-region-label::before{content:"✧";font-size:16px}
+body[data-site="cn"] .cn-region-description{display:block;max-width:570px;color:#a9bed1;font-size:12px;line-height:1.9;margin:7px 0 15px}
+body[data-site="cn"] .cn-notice{display:flex;flex-direction:column;gap:9px;margin:42px 0 0;padding:22px 26px;border-left:2px solid var(--gold);background:rgba(200,167,111,.055)}
+body[data-site="cn"] .cn-notice-label{color:var(--gold-pale);font-size:12px;letter-spacing:.08em}
+body[data-site="cn"] .cn-notice p{margin:0;color:#a6b8c9;font-size:12px;line-height:1.9}
+body[data-site="cn"] .social-link.social-bilibili{order:-1}
+@media(max-width:560px){body[data-site="cn"] .cn-notice{padding:18px}body[data-site="cn"] .cn-region-description{font-size:11px}}
