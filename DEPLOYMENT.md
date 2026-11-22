@@ -47,3 +47,9 @@ The following **old** Vercel projects have no custom domains and can be deleted 
 The available connector can provide the deletion pages but **cannot perform the final Delete Project action**. Do not delete `shiorivia-web-com`, `shiorivia-web-org`, or `shiorivia_cloud`.
 
 The site's source code is AGPL-3.0. Brand marks follow the independent `TRADEMARKS.md` policy. External AI providers and third-party character IP have their own terms.
+
+## China-region informational site
+
+The `.cn` site uses `dist/cn` and **is not another AI-service endpoint**. Do not direct `app.shiorivia.com` traffic through `.cn`.
+
+Host the static build outside mainland China for the current phase, but review applicable public-security filing obligations with the domain owner or a local professional before announcing a launch; an overseas host does **not** eliminate every China-related compliance duty. Check whether the registrar's CNNIC WHOIS privacy service is enabled. The site contains no user signup, form submission, analytics or AI interaction. Vercel/CDN reachability in mainland China must be tested from actual mainland networks before launch. Do not attach `shiorivia.cn` to any project or change Alibaba Cloud DNS without launch approval.

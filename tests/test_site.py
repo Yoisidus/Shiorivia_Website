@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = [ROOT / "index.html", ROOT / "community/index.html", ROOT / "dist/main/index.html", ROOT / "dist/community/index.html"]
+PAGES = [ROOT / "index.html", ROOT / "community/index.html", ROOT / "dist/main/index.html", ROOT / "dist/community/index.html", ROOT / "dist/cn/index.html"]
 LINKS = (
     "https://x.com/Shiorivia",
     "https://www.youtube.com/@Shiorivia",
@@ -25,7 +25,7 @@ class WebsiteTests(unittest.TestCase):
             with self.subTest(page=str(page)):
                 html = page.read_text(encoding="utf-8")
                 self.assertNotIn("raw.githubusercontent.com", html)
-        for edition in ("main", "community"):
+        for edition in ("main", "community", "cn"):
             for name in ("shiorivia-mark.svg", "shiorivia-og.png", "shiorivia-favicon-32.png", "style.css", "site.js"):
                 self.assertTrue((ROOT / "dist" / edition / "assets" / name).is_file())
 
@@ -43,6 +43,22 @@ class WebsiteTests(unittest.TestCase):
             self.assertIn(language, js)
         self.assertNotIn("eval(", js)
         self.assertNotIn("new Function(", js)
+
+
+    def test_cn_information_only(self):
+        cn = (ROOT / "dist/cn/index.html").read_text(encoding="utf-8")
+        self.assertIn('data-site="cn"', cn)
+        self.assertIn('href="https://shiorivia.org/"', cn)
+        self.assertIn('href="https://shiorivia.com/"', cn)
+        self.assertIn('https://shiorivia.cn/assets/shiorivia-og.png', cn)
+        self.assertIn('rel="canonical" href="https://shiorivia.cn/"', cn)
+        for key in ("cn_intro", "cn_region", "cn_notice", "cn_nav_main", "cn_hero_main", "cn_last_cta"):
+            self.assertIn('data-i18n="' + key + '"', cn)
+        # No onsite AI, BYOK input, account or direct app launch on .cn.
+        self.assertNotIn("https://app.shiorivia.com", cn)
+        self.assertNotIn('action="/api/', cn)
+        self.assertNotIn("<form", cn)
+        self.assertNotIn('src="https://', cn)
 
 if __name__ == "__main__":
     unittest.main()

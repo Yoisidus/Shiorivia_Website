@@ -4,6 +4,15 @@
   'use strict';
   const languages = ['zh-CN', 'zh-TW', 'en', 'ja', 'ko'];
   const copy = {
+    // China-region introduction site; static information only.
+    cn_region: ['中国大陆 · 产品资讯站','中國大陸 · 產品資訊站','Mainland China · Information','中国本土向け · 製品案内','중국 본토 · 제품 소개'],
+    cn_intro: ['本页面仅提供产品介绍与开源资讯，在线应用由海外主站提供。','本頁僅提供產品介紹與開源資訊，線上應用由海外主站提供。','This page provides product information and open-source resources only. The online application is hosted overseas.','このページは製品紹介とオープンソース情報のみを提供します。オンラインアプリは海外で運営されています。','이 페이지는 제품 및 오픈소스 정보만 제공하며 온라인 앱은 해외에서 운영됩니다.'],
+    cn_nav_main: ['国际主站','國際主站','Global website','海外公式サイト','글로벌 사이트'],
+    cn_hero_main: ['了解海外版本','了解海外版本','Explore global editions','海外版を見る','해외 버전 살펴보기'],
+    cn_cloud_cta: ['了解海外 Cloud 版','了解海外 Cloud 版','Learn about Cloud overseas','海外 Cloud 版について','해외 Cloud 버전 알아보기'],
+    cn_last_cta: ['访问国际官网','造訪國際官網','Visit the global website','海外公式サイトへ','글로벌 사이트 방문'],
+    cn_notice_title: ['关于中国站','關於中國站','About this regional page','中国向けページについて','중국 지역 페이지 안내'],
+    cn_notice: ['本站为静态介绍页面，不提供账号注册、在线 AI 对话或模型 API 服务。Cloud 为海外应用，具体可用性取决于所在地区与第三方服务商。','本站為靜態介紹頁面，不提供帳號註冊、線上 AI 對話或模型 API 服務。Cloud 為海外應用，實際可用性取決於所在地區與第三方服務供應商。','This is an informational static site: no account registration, live AI conversation or model API is provided here. Cloud is hosted overseas; availability depends on your region and third-party providers.','このサイトは静的な製品紹介ページです。アカウント登録、AI チャット、モデル API は提供しません。Cloud は海外アプリで、利用可能性は地域・外部プロバイダーにより異なります。','이 사이트는 정적 소개 페이지로 계정 등록, 실시간 AI 대화 또는 모델 API를 제공하지 않습니다. Cloud는 해외 앱이며 서비스 이용 가능 여부는 지역 및 제공업체에 따라 달라집니다.'],
     nav_spaces: ['探索空间','探索空間','Explore','空間を探る','공간 탐험'],
     nav_editions: ['选择版本','選擇版本','Editions','エディション','에디션'],
     nav_story: ['设计理念','設計理念','Philosophy','デザイン理念','디자인 철학'],
@@ -101,11 +110,13 @@
   };
 
   const titleBySite = {
+    cn: ['Shiorivia 中国站 · 故事，于此寻路','Shiorivia 中國站 · 故事，於此尋路','Shiorivia China · Product introduction','Shiorivia 中国向け · 製品案内','Shiorivia 중국 사이트 · 제품 소개'],
     main: ['Shiorivia — 故事，于此寻路','Shiorivia — 故事，於此尋路','Shiorivia — Where Stories Find Their Way','Shiorivia — 物語の道しるべ','Shiorivia — 이야기가 길을 찾는 곳'],
     community: ['Shiorivia 社区 · 共绘星图','Shiorivia 社群 · 共繪星圖','Shiorivia Community · Together, We Chart the Stars','Shiorivia コミュニティ · 星図をともに','Shiorivia 커뮤니티 · 함께 그리는 별자리']
   };
+  const cnDefault = document.body.dataset.site === 'cn' ? 'zh-CN' : navigator.language || 'zh-CN';
   let current = 'zh-CN';
-  try { current = localStorage.getItem('shiorivia-site-language') || navigator.language || 'zh-CN'; } catch { current = navigator.language || 'zh-CN'; }
+  try { current = localStorage.getItem('shiorivia-site-language') || cnDefault; } catch { current = cnDefault; }
   if (!languages.includes(current)) { current = /^zh-(TW|HK|MO)/i.test(current) ? 'zh-TW' : /^zh/i.test(current) ? 'zh-CN' : /^ja/i.test(current) ? 'ja' : /^ko/i.test(current) ? 'ko' : 'en'; }
   function applyLanguage(lang) {
     current = languages.includes(lang) ? lang : 'en';
